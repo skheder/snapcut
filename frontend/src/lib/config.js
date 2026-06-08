@@ -1,6 +1,5 @@
 export const API_URL = __DEV__
-  ? "http://localhost:4000"
-  : "https://your-backend.railway.app"; // ← update after deploying
-
-export const STRIPE_PUBLISHABLE_KEY = "pk_test_YOUR_STRIPE_KEY_HERE";
+  ? "http://localhost:8080"
+  : "https://snapcut-production-8e02.up.railway.app";
+export const STRIPE_PUBLISHABLE_KEY = "pk_test_51TfZO1HX7h8KuDOSJtG9lQ05yK9Wy4xr6eLQmqTlpYMobFqYVVX0DS3fMzhooqJoYdObChXw1m6Brc9xLRhAotX000fWRq7Hki";
 // Switch to pk_live_ when going live
