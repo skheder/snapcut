@@ -1,0 +1,24 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "d6bc887f-18f9-453a-873f-03fabc15cf9e"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.skheder.snapcut",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/d6bc887f-18f9-453a-873f-03fabc15cf9e"
+    },
+    "android": {
+      "package": "com.skheder.snapcut"
+    }
+  }
+}
