@@ -11,9 +11,7 @@
         "ITSAppUsesNonExemptEncryption": false
       }
     },
-    "runtimeVersion": {
-      "policy": "appVersion"
-    },
+   "runtimeVersion": "1.0.0",
     "updates": {
       "url": "https://u.expo.dev/d6bc887f-18f9-453a-873f-03fabc15cf9e"
     },
