@@ -16,7 +16,7 @@ router.post("/connect", authenticate, requireBarber, async (req, res) => {
     .update({ stripe_account_id: account.id, stripe_onboarding_complete: false })
     .eq("user_id", req.user.id);
 
-  console.log("ACCOUNT ID:", account.id); const accountLink = await stripe.accountLinks.create({
+  console.log("ACCOUNT ID:", account.id); console.log("ACCOUNT ID:", account.id); const accountLink = await stripe.accountLinks.create({
     account: account.id,
     refresh_url: "https://snapcut-production-8e02.up.railway.app/barber/connect/refresh",
     return_url: "https://snapcut-production-8e02.up.railway.app/barber/connect/complete",
