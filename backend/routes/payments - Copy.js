@@ -24,10 +24,6 @@ router.post("/connect", authenticate, requireBarber, async (req, res) => {
   });
 
   res.json({ url: accountLink.url });
-  } catch (err) {
-    console.error("Stripe connect error:", err.message);
-    res.status(500).json({ error: err.message });
-  }
 });
 
 // GET /payments/connect/status
@@ -35,16 +31,19 @@ router.get("/connect/status", authenticate, requireBarber, async (req, res) => {
   const { data: barber } = await supabase.from("barbers")
     .select("stripe_account_id, stripe_onboarding_complete")
     .eq("user_id", req.user.id).single();
+
   if (!barber?.stripe_account_id) return res.json({ connected: false });
+
   const account  = await stripe.accounts.retrieve(barber.stripe_account_id);
   const complete = account.details_submitted;
+
   if (complete && !barber.stripe_onboarding_complete) {
     await supabase.from("barbers")
       .update({ stripe_onboarding_complete: true }).eq("user_id", req.user.id);
   }
-  res.json({ connected: true, complete });
-});
 
+  res.json({ connected: complete });
+});
 
 // GET /payments/earnings
 router.get("/earnings", authenticate, requireBarber, async (req, res) => {
