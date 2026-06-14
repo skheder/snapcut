@@ -118,3 +118,54 @@
 {"_e":"metro:bundling:progress","_t":1781420061675,"id":"3","progress":0,"total":1,"current":0}
 {"_e":"metro:bundling:done","_t":1781420062313,"id":"3","total":1,"ms":639.1203}
 {"_e":"metro:client_log","_t":1781420095606,"level":"log","data":["BARBER ERROR:","Current location is unavailable. Make sure that location services are enabled"]}
+{"_e":"root:init","_t":1781420367482,"format":"v0-jsonl","version":"56.1.15"}
+{"_e":"env:mode","_t":1781420367482,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1781420367484,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1781420367605,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1781420367784,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"metro:instantiate","_t":1781420370524,"atlas":false,"workers":14,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1781420375974,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781420375974,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781420375976,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781420376076,"id":"1","progress":0.1899124653739612,"total":475,"current":207}
+{"_e":"metro:bundling:progress","_t":1781420376176,"id":"1","progress":0.508333490790475,"total":763,"current":544}
+{"_e":"metro:bundling:progress","_t":1781420376276,"id":"1","progress":0.8792905133028756,"total":915,"current":858}
+{"_e":"metro:bundling:done","_t":1781420376369,"id":"1","total":915,"ms":394.7915}
+{"_e":"metro:client_log","_t":1781420410815,"level":"log","data":["BARBER ERROR:","Current location is unavailable. Make sure that location services are enabled"]}
+{"_e":"metro:client_log","_t":1781420555571,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:bundling:started","_t":1781420565692,"id":"2","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781420565692,"id":"2","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781420565716,"id":"2","total":1,"ms":24.3515}
+{"_e":"metro:client_log","_t":1781420569331,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781420599338,"level":"log","data":["BARBER ERROR:","Current location is unavailable. Make sure that location services are enabled"]}
+{"_e":"metro:client_log","_t":1781420625932,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781420633306,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:bundling:started","_t":1781420654525,"id":"3","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781420654525,"id":"3","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781420654548,"id":"3","total":1,"ms":23.3881}
+{"_e":"metro:client_log","_t":1781420658101,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781420688117,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781420704373,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781420734379,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781420774927,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781420804931,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781420806097,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"available\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":null,\"stripe_onboarding_complete\":false,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:bundling:started","_t":1781421054864,"id":"5","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781421054865,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781421054866,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781421054921,"id":"5","total":1,"ms":56.7191}
+{"_e":"metro:client_log","_t":1781421058782,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781421083100,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781421088790,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781421089329,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"available\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":null,\"stripe_onboarding_complete\":false,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:client_log","_t":1781421113108,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781421113720,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"available\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":null,\"stripe_onboarding_complete\":false,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:bundling:started","_t":1781439976067,"id":"6","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781439976067,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781439976068,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781439976168,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781439976268,"id":"6","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781439976350,"id":"6","total":1,"ms":282.7068}
+{"_e":"metro:client_log","_t":1781439980452,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781440010462,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781440011069,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"available\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":null,\"stripe_onboarding_complete\":false,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
