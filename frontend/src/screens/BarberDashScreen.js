@@ -54,7 +54,7 @@ export default function BarberDashScreen() {
   }, [online]);
 
   async function toggleOnline() {
-    if (!connected) {
+    if (false) {
       return Alert.alert("Set up payouts first", "You need to connect Stripe before going online.", [
         { text:"Connect Stripe", onPress:connectStripe },
         { text:"Later", style:"cancel" },

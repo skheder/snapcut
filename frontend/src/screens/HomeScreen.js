@@ -15,19 +15,19 @@ export default function HomeScreen({ navigation }) {
   useEffect(() => {
     (async () => {
       // Load subscription
-      try { const { data } = await getMySubscription(); setPlan(data.plan || "basic"); } catch {}
+      try { const { data } = await getMySubscription(); setPlan(data.plan || "basic"); } catch (e) { console.log("BARBER ERROR:", e.message); try { const { data } = await getBarbers(); console.log("FALLBACK BARBERS:", JSON.stringify(data)); setBarberCount(data.filter(b => b.status === "available").length); } catch (e2) { console.log("FALLBACK ERROR:", e2.message); } }
 
       // Load nearby barbers
       try {
-        const { status } = await Location.requestForegroundPermissionsAsync();
+        const { status } = await Location.requestForegroundPermissionsAsync(); console.log("LOCATION STATUS:", status);
         let lat, lng;
         if (status === "granted") {
-          const loc = await Location.getCurrentPositionAsync({});
+          const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low }).catch(() => null); if (!loc) throw new Error("no loc");
           lat = loc.coords.latitude; lng = loc.coords.longitude;
         }
         const { data } = await getBarbers(lat, lng);
-        setBarberCount(data.filter(b => b.status === "available").length);
-      } catch {}
+        console.log("BARBERS:", JSON.stringify(data)); setBarberCount(data.filter(b => b.status === "available").length);
+      } catch (e) { console.log("BARBER ERROR:", e.message); try { const { data } = await getBarbers(); console.log("FALLBACK BARBERS:", JSON.stringify(data)); setBarberCount(data.filter(b => b.status === "available").length); } catch (e2) { console.log("FALLBACK ERROR:", e2.message); } }
     })();
   }, []);
 

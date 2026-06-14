@@ -21,13 +21,13 @@ export default function BrowseScreen({ navigation }) {
         const { status } = await Location.requestForegroundPermissionsAsync();
         let lat, lng;
         if (status === "granted") {
-          const loc = await Location.getCurrentPositionAsync({});
+          const loc = await Location.getCurrentPositionAsync({ accuracy: Location.Accuracy.Low }).catch(() => null); if (!loc) throw new Error("no loc");
           lat = loc.coords.latitude; lng = loc.coords.longitude;
         }
         const { data } = await getBarbers(lat, lng);
         setBarbers(data);
       } catch (e) {
-        Alert.alert("Could not load barbers", "Check your connection");
+        try { const { data } = await getBarbers(); setBarbers(data); } catch { Alert.alert("Could not load barbers", "Check your connection"); }
       } finally { setLoading(false); }
     })();
   }, []);
