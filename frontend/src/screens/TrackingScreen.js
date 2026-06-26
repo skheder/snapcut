@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Alert } from "react-native";
-import { updateBookingStatus } from "../lib/api";
+import * as Location from "expo-location";
+import { updateBookingStatus, getBarber } from "../lib/api";
 import { C } from "../lib/theme";
 
 const STAGES = ["accepted","en_route","arrived","in_progress","completed"];
@@ -12,18 +13,51 @@ const STAGE_LABELS = {
   completed:   "All done! 🎉",
 };
 
+function haversineKm(lat1, lng1, lat2, lng2) {
+  const R = 6371, d2r = Math.PI / 180;
+  const dLat = (lat2 - lat1) * d2r, dLng = (lng2 - lng1) * d2r;
+  const a = Math.sin(dLat/2)**2 + Math.cos(lat1*d2r)*Math.cos(lat2*d2r)*Math.sin(dLng/2)**2;
+  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+}
+
 export default function TrackingScreen({ route, navigation }) {
   const { booking, barber } = route.params;
   const [status,      setStatus]      = useState(booking.status || "accepted");
-  const [eta,         setEta]         = useState(barber.eta_minutes || 10);
   const [pulse,       setPulse]       = useState(false);
+  const [customerLoc, setCustomerLoc] = useState(null);
+  const [barberLoc,   setBarberLoc]   = useState(
+    barber.lat && barber.lng ? { lat: barber.lat, lng: barber.lng } : null
+  );
+
   const stageIdx = STAGES.indexOf(status);
   const progress = ((stageIdx + 1) / STAGES.length) * 100;
 
-  // Countdown timer
+  // Compute ETA from real GPS distance; fall back to static value
+  const eta = useMemo(() => {
+    if (!customerLoc || !barberLoc) return barber.eta_minutes || 10;
+    const distKm = haversineKm(barberLoc.lat, barberLoc.lng, customerLoc.lat, customerLoc.lng);
+    return Math.max(1, Math.ceil(distKm / 30 * 60)); // 30 km/h city average
+  }, [customerLoc, barberLoc]);
+
+  // Get customer location once on mount
   useEffect(() => {
-    if (eta <= 0 || status !== "en_route") return;
-    const t = setInterval(() => setEta(e => (e <= 1 ? (clearInterval(t), 0) : e - 1)), 60000);
+    (async () => {
+      const { status: perm } = await Location.requestForegroundPermissionsAsync();
+      if (perm !== "granted") return;
+      const loc = await Location.getCurrentPositionAsync({});
+      setCustomerLoc({ lat: loc.coords.latitude, lng: loc.coords.longitude });
+    })();
+  }, []);
+
+  // Poll barber location every 10s while en_route
+  useEffect(() => {
+    if (status !== "en_route") return;
+    const t = setInterval(async () => {
+      try {
+        const { data } = await getBarber(barber.id);
+        if (data.lat && data.lng) setBarberLoc({ lat: data.lat, lng: data.lng });
+      } catch {}
+    }, 10000);
     return () => clearInterval(t);
   }, [status]);
 

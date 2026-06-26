@@ -7,10 +7,11 @@ import { C } from "../lib/theme";
 const SURGE = 1.4;
 
 export default function BrowseScreen({ navigation }) {
-  const [barbers, setBarbers]   = useState([]);
-  const [filter,  setFilter]    = useState("all");
-  const [loading, setLoading]   = useState(true);
-  const [plan,    setPlan]       = useState("basic");
+  const [barbers,      setBarbers]      = useState([]);
+  const [filter,       setFilter]       = useState("all");
+  const [womensOnly,   setWomensOnly]   = useState(false);
+  const [loading,      setLoading]      = useState(true);
+  const [plan,         setPlan]         = useState("basic");
 
   const surgeActive = plan === "basic";
 
@@ -32,7 +33,9 @@ export default function BrowseScreen({ navigation }) {
     })();
   }, []);
 
-  const filtered = filter === "all" ? barbers : barbers.filter(b => b.status === filter);
+  const filtered = barbers
+    .filter(b => filter === "all" || b.status === filter)
+    .filter(b => !womensOnly || b.accepts_women);
 
   function renderBarber({ item: b }) {
     const displayPrice = surgeActive ? (b.base_price * SURGE).toFixed(0) : b.base_price;
@@ -40,8 +43,11 @@ export default function BrowseScreen({ navigation }) {
     return (
       <TouchableOpacity style={[s.card, b.is_featured && s.featuredCard]}
         onPress={() => navigation.navigate("Barber", { barber: b })}>
-        {b.is_featured && <Text style={s.featuredBadge}>⭐ FEATURED</Text>}
-        <View style={[s.row, { marginTop: b.is_featured ? 8 : 0 }]}>
+        <View style={{ flexDirection:"row", gap:6 }}>
+          {b.is_featured && <Text style={s.featuredBadge}>⭐ FEATURED</Text>}
+          {b.accepts_women && <Text style={s.womensBadge}>♀ WOMEN'S</Text>}
+        </View>
+        <View style={[s.row, { marginTop: (b.is_featured || b.accepts_women) ? 8 : 0 }]}>
           <View style={[s.avatar, { backgroundColor: avatarColor(b.id) }]}>
             <Text style={s.avatarTxt}>{(b.users?.name || "?").slice(0,2).toUpperCase()}</Text>
           </View>
@@ -95,6 +101,9 @@ export default function BrowseScreen({ navigation }) {
             <Text style={[s.filterTxt, filter===f && s.filterTxtActive]}>{f.charAt(0).toUpperCase()+f.slice(1)}</Text>
           </TouchableOpacity>
         ))}
+        <TouchableOpacity style={[s.filterBtn, womensOnly && s.filterBtnWomens]} onPress={()=>setWomensOnly(w=>!w)}>
+          <Text style={[s.filterTxt, womensOnly && s.filterTxtWomens]}>♀ Women's</Text>
+        </TouchableOpacity>
       </View>
 
       {loading
@@ -136,7 +145,12 @@ const s = StyleSheet.create({
                     borderWidth:1, borderColor:C.border },
   filterBtnActive:{ backgroundColor:C.yellow, borderColor:C.yellow },
   filterTxt:      { color:C.muted, fontSize:12, fontWeight:"700" },
-  filterTxtActive:{ color:C.dark },
+  filterTxtActive:  { color:C.dark },
+  filterBtnWomens:  { backgroundColor:"rgba(255,105,180,0.15)", borderColor:"rgba(255,105,180,0.5)" },
+  filterTxtWomens:  { color:"#FF69B4" },
+  womensBadge:      { fontSize:10, fontWeight:"800", color:"#fff", backgroundColor:"#C2185B",
+                      alignSelf:"flex-start", paddingHorizontal:10, paddingVertical:3,
+                      borderRadius:6, letterSpacing:1 },
   card:           { backgroundColor:C.card, borderWidth:1, borderColor:C.border,
                     borderRadius:20, padding:18, marginBottom:14 },
   featuredCard:   { borderColor:"rgba(232,255,71,0.3)", backgroundColor:"rgba(232,255,71,0.04)" },

@@ -16,8 +16,10 @@ export const getMe                 = ()            => api.get("/auth/me");
 
 export const getBarbers            = (lat, lng)    => api.get("/barbers", { params: { lat, lng } });
 export const getBarber             = (id)          => api.get(`/barbers/${id}`);
+export const getMyBarberProfile    = ()            => api.get("/barbers/me");
 export const updateBarberLocation  = (lat, lng)    => api.put("/barbers/location", { lat, lng });
 export const updateBarberStatus    = (status)      => api.put("/barbers/status", { status });
+export const updateBarberProfile   = (data)        => api.put("/barbers/profile", data);
 
 export const createBooking         = (data)        => api.post("/bookings", data);
 export const getMyBookings         = ()            => api.get("/bookings");

@@ -169,3 +169,97 @@
 {"_e":"metro:client_log","_t":1781439980452,"level":"log","data":["LOCATION STATUS:","granted"]}
 {"_e":"metro:client_log","_t":1781440010462,"level":"log","data":["BARBER ERROR:","no loc"]}
 {"_e":"metro:client_log","_t":1781440011069,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"available\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":null,\"stripe_onboarding_complete\":false,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:bundling:started","_t":1781444129191,"id":"c","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781444129191,"id":"c","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781444129193,"id":"c","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781444129293,"id":"c","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781444129393,"id":"c","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781444129476,"id":"c","total":1,"ms":284.8683}
+{"_e":"metro:client_log","_t":1781444134414,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781444164423,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781444165126,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"busy\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":\"acct_1TiDoLQbnUZtstjP\",\"stripe_onboarding_complete\":true,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:client_log","_t":1781444374331,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781444404338,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781444404904,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"busy\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":\"acct_1TiDoLQbnUZtstjP\",\"stripe_onboarding_complete\":true,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:server_log","_t":1781575375040,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}
+{"_e":"metro:server_log","_t":1781596827791,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}
+{"_e":"metro:bundling:started","_t":1781701799293,"id":"e","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781701799293,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781701799297,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781701799397,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781701799617,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781701799718,"id":"e","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781701799797,"id":"e","total":1,"ms":503.5687}
+{"_e":"metro:client_log","_t":1781701804380,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781701834388,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781701834968,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"busy\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":\"acct_1TiDoLQbnUZtstjP\",\"stripe_onboarding_complete\":true,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:client_log","_t":1781765951888,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781765981932,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781765983075,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"busy\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":\"acct_1TiDoLQbnUZtstjP\",\"stripe_onboarding_complete\":true,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:bundling:started","_t":1781766469597,"id":"f","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781766469597,"id":"f","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781766469599,"id":"f","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781766469776,"id":"f","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781766469778,"id":"f","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781766469878,"id":"f","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781766469991,"id":"f","total":1,"ms":394.0713}
+{"_e":"metro:client_log","_t":1781766476060,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781766506072,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781766506673,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"busy\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":\"acct_1TiDoLQbnUZtstjP\",\"stripe_onboarding_complete\":true,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:client_log","_t":1781766680745,"level":"error","data":["[Error: Uncaught (in promise, id: 0): \"Error: Current location is unavailable. Make sure that location services are enabled\"]"]}
+{"_e":"metro:client_log","_t":1781766690251,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781766720259,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781766720969,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"available\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":\"acct_1TiDoLQbnUZtstjP\",\"stripe_onboarding_complete\":true,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"metro:server_log","_t":1781838442281,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}
+{"_e":"metro:server_log","_t":1781838517442,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}
+{"_e":"root:init","_t":1781956607009,"format":"v0-jsonl","version":"56.1.15"}
+{"_e":"env:mode","_t":1781956607010,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1781956607014,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1781956607282,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1781956607662,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"metro:instantiate","_t":1781956610650,"atlas":false,"workers":14,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1781956619977,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1781956619977,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781956619979,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781956620079,"id":"1","progress":0.14968019349637196,"total":305,"current":118}
+{"_e":"metro:bundling:progress","_t":1781956620191,"id":"1","progress":0.2186428326474623,"total":432,"current":202}
+{"_e":"metro:bundling:progress","_t":1781956620291,"id":"1","progress":0.36444545777376025,"total":704,"current":425}
+{"_e":"metro:bundling:progress","_t":1781956620391,"id":"1","progress":0.7714341704166062,"total":830,"current":729}
+{"_e":"metro:bundling:progress","_t":1781956620491,"id":"1","progress":0.9509278191427799,"total":966,"current":942}
+{"_e":"metro:bundling:progress","_t":1781956620606,"id":"1","progress":0.9942992990229051,"total":1051,"current":1048}
+{"_e":"metro:bundling:progress","_t":1781956620639,"id":"1","progress":0.9961977220734003,"total":1051,"current":1049}
+{"_e":"metro:bundling:done","_t":1781956620713,"id":"1","total":1051,"ms":735.5236}
+{"_e":"metro:client_log","_t":1781956624506,"level":"log","data":["LOCATION STATUS:","granted"]}
+{"_e":"metro:client_log","_t":1781956654519,"level":"log","data":["BARBER ERROR:","no loc"]}
+{"_e":"metro:client_log","_t":1781956655203,"level":"log","data":["FALLBACK BARBERS:","[{\"id\":\"1b53df5c-f5a1-4262-a7e0-3fba53fcb0b0\",\"user_id\":\"18e1c471-63fd-4347-93cc-d42660b56145\",\"specialty\":\"mens\",\"status\":\"available\",\"rating\":0,\"review_count\":0,\"total_cuts\":0,\"is_featured\":false,\"base_price\":35,\"lat\":null,\"lng\":null,\"location_updated_at\":null,\"eta_minutes\":10,\"stripe_account_id\":\"acct_1TiDoLQbnUZtstjP\",\"stripe_onboarding_complete\":true,\"created_at\":\"2026-06-14T06:25:32.139557+00:00\",\"users\":{\"name\":\"Abu George\",\"phone\":\"0478762887\"},\"distance_km\":null}]"]}
+{"_e":"root:init","_t":1782033965491,"format":"v0-jsonl","version":"56.1.15"}
+{"_e":"env:mode","_t":1782033965492,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1782033965496,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1782033965741,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1782033966124,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"metro:instantiate","_t":1782033969191,"atlas":false,"workers":14,"host":"::","port":8081}
+{"_e":"metro:client_log","_t":1782034770291,"level":"error","data":["Project is incompatible with this version of Expo Go\n\nThis project requires a newer version of Expo Go.\n\nHow to fix this error:\nDownload the latest version of Expo Go from the Play Store."]}
+{"_e":"metro:client_log","_t":1782034895114,"level":"error","data":["Project is incompatible with this version of Expo Go\n\nThis project requires a newer version of Expo Go.\n\nHow to fix this error:\nDownload the latest version of Expo Go from the Play Store."]}
+{"_e":"metro:bundling:started","_t":1782035305456,"id":"1","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1782035305456,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1782035305459,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1782035305559,"id":"1","progress":0.14187777777777777,"total":300,"current":113}
+{"_e":"metro:bundling:progress","_t":1782035305659,"id":"1","progress":0.26542853447399783,"total":658,"current":339}
+{"_e":"metro:bundling:progress","_t":1782035305759,"id":"1","progress":0.6099807723121295,"total":790,"current":617}
+{"_e":"metro:bundling:progress","_t":1782035305859,"id":"1","progress":0.8931763794123653,"total":874,"current":826}
+{"_e":"metro:bundling:progress","_t":1782035305960,"id":"1","progress":0.999,"total":1056,"current":1056}
+{"_e":"metro:bundling:done","_t":1782035305999,"id":"1","total":1056,"ms":542.8643}
+{"_e":"metro:client_log","_t":1782035412342,"level":"error","data":["[Error: Uncaught (in promise, id: 0): \"Error: Current location is unavailable. Make sure that location services are enabled\"]"]}
+{"_e":"metro:client_log","_t":1782035413518,"level":"error","data":["[Error: Uncaught (in promise, id: 1): \"Error: Current location is unavailable. Make sure that location services are enabled\"]"]}
+{"_e":"metro:client_log","_t":1782035423534,"level":"error","data":["[Error: Uncaught (in promise, id: 2): \"Error: Current location is unavailable. Make sure that location services are enabled\"]"]}
+{"_e":"metro:client_log","_t":1782035433552,"level":"error","data":["[Error: Uncaught (in promise, id: 3): \"Error: Current location is unavailable. Make sure that location services are enabled\"]"]}
+{"_e":"metro:client_log","_t":1782035443569,"level":"error","data":["[Error: Uncaught (in promise, id: 4): \"Error: Current location is unavailable. Make sure that location services are enabled\"]"]}
+{"_e":"metro:client_log","_t":1782035453587,"level":"error","data":["[Error: Uncaught (in promise, id: 5): \"Error: Current location is unavailable. Make sure that location services are enabled\"]"]}
+{"_e":"metro:bundling:started","_t":1782035459353,"id":"9","platform":"android","environment":null,"entry":"node_modules\\expo\\AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1782035459353,"id":"9","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1782035459378,"id":"9","total":1,"ms":24.6541}
+{"_e":"metro:server_log","_t":1782098131517,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}
+{"_e":"metro:server_log","_t":1782098131778,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}
+{"_e":"metro:server_log","_t":1782111213539,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}
+{"_e":"metro:server_log","_t":1782111213539,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}
+{"_e":"metro:server_log","_t":1782175071825,"level":"error","data":["[timeout] connection terminated with Device for app='%s' on device='%s' after not responding for %s seconds.","host.exp.exponent","sdk_gphone16k_x86_64 - 17 - API 37","60"]}

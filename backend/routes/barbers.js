@@ -11,13 +11,17 @@ function haversine(lat1, lng1, lat2, lng2) {
 
 // GET /barbers — list available barbers
 router.get("/", async (req, res) => {
-  const { lat, lng, radius_km = 15 } = req.query;
-  const { data, error } = await supabase
+  const { lat, lng, radius_km = 15, accepts_women } = req.query;
+  let query = supabase
     .from("barbers")
     .select("*, users(name, phone)")
     .in("status", ["available", "busy"])
     .order("is_featured", { ascending: false })
     .order("rating", { ascending: false });
+
+  if (accepts_women === "true") query = query.eq("accepts_women", true);
+
+  const { data, error } = await query;
 
   if (error) return res.status(500).json({ error: error.message });
 
@@ -35,6 +39,14 @@ router.get("/", async (req, res) => {
   res.json(barbers);
 });
 
+// GET /barbers/me — authenticated barber fetches their own profile
+router.get("/me", authenticate, requireBarber, async (req, res) => {
+  const { data, error } = await supabase
+    .from("barbers").select("*").eq("user_id", req.user.id).single();
+  if (error || !data) return res.status(404).json({ error: "Barber profile not found" });
+  res.json(data);
+});
+
 // GET /barbers/:id
 router.get("/:id", async (req, res) => {
   const { data, error } = await supabase
@@ -50,6 +62,21 @@ router.put("/location", authenticate, requireBarber, async (req, res) => {
   if (!lat || !lng) return res.status(400).json({ error: "lat and lng required" });
   const { error } = await supabase.from("barbers")
     .update({ lat, lng, location_updated_at: new Date() }).eq("user_id", req.user.id);
+  if (error) return res.status(500).json({ error: error.message });
+  res.json({ ok: true });
+});
+
+// PUT /barbers/profile — update barber profile fields
+router.put("/profile", authenticate, requireBarber, async (req, res) => {
+  const allowed = ["accepts_women", "specialty", "bio"];
+  const updates = {};
+  for (const key of allowed) {
+    if (req.body[key] !== undefined) updates[key] = req.body[key];
+  }
+  if (Object.keys(updates).length === 0)
+    return res.status(400).json({ error: "No valid fields to update" });
+  const { error } = await supabase.from("barbers")
+    .update(updates).eq("user_id", req.user.id);
   if (error) return res.status(500).json({ error: error.message });
   res.json({ ok: true });
 });

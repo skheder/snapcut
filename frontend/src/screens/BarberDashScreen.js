@@ -4,7 +4,8 @@ import { View, Text, TouchableOpacity, StyleSheet, FlatList,
 import * as Location from "expo-location";
 import { useAuth } from "../hooks/useAuth";
 import { getBarberBookings, updateBookingStatus, updateBarberStatus,
-  updateBarberLocation, getEarnings, getConnectStatus, startStripeConnect } from "../lib/api";
+  updateBarberLocation, getEarnings, getConnectStatus, startStripeConnect,
+  getMyBarberProfile, updateBarberProfile } from "../lib/api";
 import { C } from "../lib/theme";
 import { Linking } from "react-native";
 
@@ -24,16 +25,19 @@ export default function BarberDashScreen() {
   const [connected,  setConnected]  = useState(false);
   const [loading,    setLoading]    = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [tab,        setTab]        = useState("jobs"); // jobs | earnings
+  const [tab,          setTab]          = useState("jobs"); // jobs | earnings
+  const [acceptsWomen, setAcceptsWomen] = useState(false);
 
   const load = useCallback(async () => {
     try {
-      const [{ data: bk }, { data: ea }, { data: cs }] = await Promise.all([
-        getBarberBookings(), getEarnings(), getConnectStatus(),
+      const [{ data: bk }, { data: ea }, { data: cs }, { data: profile }] = await Promise.all([
+        getBarberBookings(), getEarnings(), getConnectStatus(), getMyBarberProfile(),
       ]);
       setBookings(bk);
       setEarnings(ea);
       setConnected(cs.connected);
+      setOnline(profile.status === "available");
+      setAcceptsWomen(!!profile.accepts_women);
     } catch {}
     setLoading(false);
     setRefreshing(false);
@@ -49,7 +53,7 @@ export default function BarberDashScreen() {
       if (status !== "granted") return;
       const loc = await Location.getCurrentPositionAsync({});
       updateBarberLocation(loc.coords.latitude, loc.coords.longitude).catch(()=>{});
-    }, 30000);
+    }, 10000);
     return () => clearInterval(iv);
   }, [online]);
 
@@ -61,8 +65,12 @@ export default function BarberDashScreen() {
       ]);
     }
     const newStatus = online ? "offline" : "available";
-    await updateBarberStatus(newStatus).catch(()=>{});
-    setOnline(!online);
+    try {
+      await updateBarberStatus(newStatus);
+      setOnline(!online);
+    } catch (e) {
+      Alert.alert("Status update failed", e?.response?.data?.error || e?.message || "Unknown error");
+    }
   }
 
   async function connectStripe() {
@@ -70,6 +78,14 @@ export default function BarberDashScreen() {
       const { data } = await startStripeConnect();
       await Linking.openURL(data.url);
     } catch { Alert.alert("Could not connect Stripe. Try again."); }
+  }
+
+  async function toggleAcceptsWomen() {
+    const newVal = !acceptsWomen;
+    try {
+      await updateBarberProfile({ accepts_women: newVal });
+      setAcceptsWomen(newVal);
+    } catch { Alert.alert("Could not update profile"); }
   }
 
   async function advance(booking) {
@@ -119,7 +135,10 @@ export default function BarberDashScreen() {
           <TouchableOpacity style={[s.onlineBtn, online && s.onlineBtnActive]} onPress={toggleOnline}>
             <Text style={[s.onlineTxt, online && {color:C.dark}]}>{online?"● Online":"○ Offline"}</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={logout} style={s.logoutBtn}>
+          <TouchableOpacity onPress={async () => {
+            await updateBarberStatus("offline").catch(()=>{});
+            logout();
+          }} style={s.logoutBtn}>
             <Text style={{color:C.muted,fontSize:12}}>Out</Text>
           </TouchableOpacity>
         </View>
@@ -173,6 +192,19 @@ export default function BarberDashScreen() {
               Payouts land in your Stripe account within 2 business days.
             </Text>
           </View>
+
+          {/* Women's services toggle */}
+          <TouchableOpacity style={s.womensToggle} onPress={toggleAcceptsWomen}>
+            <View style={{flex:1}}>
+              <Text style={{color:C.text,fontWeight:"700",fontSize:14}}>♀ Women's services</Text>
+              <Text style={{color:C.muted,fontSize:12,marginTop:3}}>
+                Show your profile in Women's filter searches
+              </Text>
+            </View>
+            <View style={[s.togglePill, acceptsWomen && s.togglePillOn]}>
+              <View style={[s.toggleThumb, acceptsWomen && s.toggleThumbOn]} />
+            </View>
+          </TouchableOpacity>
         </View>
       )}
     </View>
@@ -216,4 +248,11 @@ const s = StyleSheet.create({
                     borderRadius:14,padding:14 },
   earningsNote:   { backgroundColor:"rgba(255,255,255,0.02)",borderRadius:12,
                     padding:14,marginTop:20,borderWidth:1,borderColor:C.border },
+  womensToggle:   { flexDirection:"row",alignItems:"center",backgroundColor:C.card,
+                    borderWidth:1,borderColor:C.border,borderRadius:16,padding:16,marginTop:14 },
+  togglePill:     { width:44,height:26,borderRadius:13,backgroundColor:"rgba(255,255,255,0.1)",
+                    justifyContent:"center",paddingHorizontal:3 },
+  togglePillOn:   { backgroundColor:"#C2185B" },
+  toggleThumb:    { width:20,height:20,borderRadius:10,backgroundColor:C.muted },
+  toggleThumbOn:  { backgroundColor:"#fff",alignSelf:"flex-end" },
 });
