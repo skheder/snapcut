@@ -59,7 +59,7 @@ export default function BrowseScreen({ navigation }) {
               <Text style={s.name}>{b.users?.name}</Text>
               <View style={[s.dot, { backgroundColor: b.status === "available" ? C.green : C.orange }]} />
             </View>
-            <Text style={s.spec}>{b.specialty}</Text>
+            <Text style={s.spec}>{b.provider_type === "hairdresser" ? "💇 Hairdresser" : "✂️ Barber"}  ·  {b.specialty}</Text>
             <Text style={s.rating}>★ {Number(b.rating).toFixed(1)}  ·  {b.review_count} reviews</Text>
           </View>
         </View>

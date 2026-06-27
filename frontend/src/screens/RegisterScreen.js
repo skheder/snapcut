@@ -6,7 +6,7 @@ import { C } from "../lib/theme";
 
 export default function RegisterScreen({ navigation }) {
   const { register } = useAuth();
-  const [form, setForm] = useState({ name:"", email:"", password:"", phone:"", role:"customer", specialty:"", gender:"" });
+  const [form, setForm] = useState({ name:"", email:"", password:"", phone:"", role:"customer", provider_type:"", specialty:"", gender:"" });
   const [loading, setLoading] = useState(false);
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
@@ -29,14 +29,18 @@ export default function RegisterScreen({ navigation }) {
 
       {/* Role picker */}
       <View style={s.roleRow}>
-        {["customer","barber"].map(r => (
-          <TouchableOpacity key={r} style={[s.roleBtn, form.role === r && s.roleBtnActive]}
-            onPress={() => set("role", r)}>
-            <Text style={[s.roleTxt, form.role === r && s.roleTxtActive]}>
-              {r === "customer" ? "👤 Customer" : "✂️ Barber"}
-            </Text>
-          </TouchableOpacity>
-        ))}
+        <TouchableOpacity style={[s.roleBtn, form.role === "customer" && s.roleBtnActive]}
+          onPress={() => setForm(f => ({ ...f, role:"customer", provider_type:"" }))}>
+          <Text style={[s.roleTxt, form.role === "customer" && s.roleTxtActive]}>👤 Customer</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[s.roleBtn, form.role === "barber" && form.provider_type === "barber" && s.roleBtnActive]}
+          onPress={() => setForm(f => ({ ...f, role:"barber", provider_type:"barber" }))}>
+          <Text style={[s.roleTxt, form.role === "barber" && form.provider_type === "barber" && s.roleTxtActive]}>✂️ Barber</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[s.roleBtn, form.provider_type === "hairdresser" && s.roleBtnActive]}
+          onPress={() => setForm(f => ({ ...f, role:"barber", provider_type:"hairdresser" }))}>
+          <Text style={[s.roleTxt, form.provider_type === "hairdresser" && s.roleTxtActive]}>💇 Hairdresser</Text>
+        </TouchableOpacity>
       </View>
 
       <TextInput style={s.input} placeholder="Full name *" placeholderTextColor={C.muted}
@@ -54,15 +58,16 @@ export default function RegisterScreen({ navigation }) {
           <TextInput style={s.input} placeholder="Specialty (e.g. Fades & Tapers)"
             placeholderTextColor={C.muted} value={form.specialty}
             onChangeText={v => set("specialty", v)} />
-          <Text style={s.label}>Gender</Text>
-          <View style={s.roleRow}>
-            {[["male","♂ Male"],["female","♀ Female"],["other","⚧ Other"]].map(([val, label]) => (
-              <TouchableOpacity key={val} style={[s.roleBtn, form.gender === val && s.roleBtnActive]}
-                onPress={() => set("gender", val)}>
-                <Text style={[s.roleTxt, form.gender === val && s.roleTxtActive]}>{label}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
+          <TouchableOpacity style={[s.femaleToggle, form.gender === "female" && s.femaleToggleOn]}
+            onPress={() => set("gender", form.gender === "female" ? "" : "female")}>
+            <Text style={s.femaleToggleIcon}>{form.gender === "female" ? "✓" : "+"}</Text>
+            <View>
+              <Text style={[s.femaleToggleTxt, form.gender === "female" && {color:C.text}]}>
+                {form.provider_type === "hairdresser" ? "I am a female hairdresser" : "I am a female barber"}
+              </Text>
+              <Text style={s.femaleToggleSub}>Customers can filter for female-only service</Text>
+            </View>
+          </TouchableOpacity>
         </>
       )}
 
@@ -95,6 +100,10 @@ const s = StyleSheet.create({
                    alignItems: "center", marginTop: 6, marginBottom: 20 },
   btnTxt:        { color: C.dark, fontWeight: "800", fontSize: 15 },
   link:          { color: C.muted, textAlign: "center", fontSize: 14 },
-  label:         { color: C.muted, fontSize: 12, fontWeight: "700", letterSpacing: 1,
-                   textTransform: "uppercase", marginBottom: 8, marginTop: 4 },
+  femaleToggle:    { flexDirection:"row", alignItems:"center", gap:12, backgroundColor:C.card,
+                     borderWidth:1, borderColor:C.border, borderRadius:14, padding:16, marginBottom:12 },
+  femaleToggleOn:  { borderColor:"#C2185B", backgroundColor:"rgba(194,24,91,0.08)" },
+  femaleToggleIcon:{ fontSize:18, color:C.muted, width:24, textAlign:"center" },
+  femaleToggleTxt: { color:C.muted, fontWeight:"600", fontSize:14 },
+  femaleToggleSub: { color:C.muted, fontSize:11, marginTop:2, opacity:0.7 },
 });

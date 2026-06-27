@@ -69,7 +69,7 @@ router.put("/location", authenticate, requireBarber, async (req, res) => {
 
 // PUT /barbers/profile — update barber profile fields
 router.put("/profile", authenticate, requireBarber, async (req, res) => {
-  const allowed = ["accepts_women", "is_female", "specialty", "bio"];
+  const allowed = ["accepts_women", "is_female", "provider_type", "specialty", "bio"];
   const updates = {};
   for (const key of allowed) {
     if (req.body[key] !== undefined) updates[key] = req.body[key];
