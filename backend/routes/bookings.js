@@ -99,7 +99,11 @@ router.put("/:id/status", authenticate, async (req, res) => {
   await supabase.from("bookings").update(updates).eq("id", req.params.id);
 
   if (status === "completed") {
-    await stripe.paymentIntents.capture(booking.payment_intent_id);
+    try {
+      await stripe.paymentIntents.capture(booking.payment_intent_id);
+    } catch (stripeErr) {
+      console.error("Stripe capture failed:", stripeErr.message);
+    }
     await supabase.from("barbers")
       .update({ status: "available" })
       .eq("id", booking.barber_id);
