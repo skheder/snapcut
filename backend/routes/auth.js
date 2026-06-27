@@ -22,7 +22,7 @@ router.post("/register",
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
-    const { email, password, name, role, specialty, phone } = req.body;
+    const { email, password, name, role, specialty, phone, gender } = req.body;
 
     const { data: existing } = await supabase
       .from("users").select("id").eq("email", email).single();
@@ -34,9 +34,12 @@ router.post("/register",
     if (error) return res.status(500).json({ error: error.message });
 
     if (role === "barber") {
+      const isFemale = gender === "female";
       await supabase.from("barbers").insert({
         user_id: user.id, specialty: specialty || "General",
         status: "offline", base_price: 35,
+        is_female: isFemale,
+        accepts_women: isFemale, // female barbers default to accepting women clients
       });
     }
 

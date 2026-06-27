@@ -104,6 +104,7 @@ export default function BarberDashScreen() {
     try {
       await updateBookingStatus(booking.id, step.next);
       setBookings(prev => prev.map(b => b.id===booking.id ? {...b,status:step.next} : b));
+      if (step.next === "completed") load();
     } catch { Alert.alert("Could not update booking"); }
   }
 

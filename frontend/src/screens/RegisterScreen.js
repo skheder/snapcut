@@ -6,7 +6,7 @@ import { C } from "../lib/theme";
 
 export default function RegisterScreen({ navigation }) {
   const { register } = useAuth();
-  const [form, setForm] = useState({ name:"", email:"", password:"", phone:"", role:"customer", specialty:"" });
+  const [form, setForm] = useState({ name:"", email:"", password:"", phone:"", role:"customer", specialty:"", gender:"" });
   const [loading, setLoading] = useState(false);
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
@@ -50,9 +50,20 @@ export default function RegisterScreen({ navigation }) {
         value={form.phone} onChangeText={v => set("phone", v)} keyboardType="phone-pad" />
 
       {form.role === "barber" && (
-        <TextInput style={s.input} placeholder="Specialty (e.g. Fades & Tapers)"
-          placeholderTextColor={C.muted} value={form.specialty}
-          onChangeText={v => set("specialty", v)} />
+        <>
+          <TextInput style={s.input} placeholder="Specialty (e.g. Fades & Tapers)"
+            placeholderTextColor={C.muted} value={form.specialty}
+            onChangeText={v => set("specialty", v)} />
+          <Text style={s.label}>Gender</Text>
+          <View style={s.roleRow}>
+            {[["male","♂ Male"],["female","♀ Female"],["other","⚧ Other"]].map(([val, label]) => (
+              <TouchableOpacity key={val} style={[s.roleBtn, form.gender === val && s.roleBtnActive]}
+                onPress={() => set("gender", val)}>
+                <Text style={[s.roleTxt, form.gender === val && s.roleTxtActive]}>{label}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </>
       )}
 
       <TouchableOpacity style={s.btn} onPress={handle} disabled={loading}>
@@ -84,4 +95,6 @@ const s = StyleSheet.create({
                    alignItems: "center", marginTop: 6, marginBottom: 20 },
   btnTxt:        { color: C.dark, fontWeight: "800", fontSize: 15 },
   link:          { color: C.muted, textAlign: "center", fontSize: 14 },
+  label:         { color: C.muted, fontSize: 12, fontWeight: "700", letterSpacing: 1,
+                   textTransform: "uppercase", marginBottom: 8, marginTop: 4 },
 });
