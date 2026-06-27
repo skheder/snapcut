@@ -49,6 +49,7 @@ export default function BrowseScreen({ navigation }) {
           {b.is_featured && <Text style={s.featuredBadge}>⭐ FEATURED</Text>}
           {b.accepts_women && <Text style={s.womensBadge}>♀ WOMEN'S</Text>}
           {b.is_female && <Text style={s.femaleBadge}>👩 FEMALE</Text>}
+          {b.women_clients_only && <Text style={s.womenOnlyBadge}>WOMEN ONLY</Text>}
         </View>
         <View style={[s.row, { marginTop: (b.is_featured || b.accepts_women) ? 8 : 0 }]}>
           <View style={[s.avatar, { backgroundColor: avatarColor(b.id) }]}>
@@ -160,6 +161,9 @@ const s = StyleSheet.create({
                       alignSelf:"flex-start", paddingHorizontal:10, paddingVertical:3,
                       borderRadius:6, letterSpacing:1 },
   femaleBadge:      { fontSize:10, fontWeight:"800", color:"#fff", backgroundColor:"#7B1FA2",
+                      alignSelf:"flex-start", paddingHorizontal:10, paddingVertical:3,
+                      borderRadius:6, letterSpacing:1 },
+  womenOnlyBadge:   { fontSize:10, fontWeight:"800", color:"#fff", backgroundColor:"#AD1457",
                       alignSelf:"flex-start", paddingHorizontal:10, paddingVertical:3,
                       borderRadius:6, letterSpacing:1 },
   card:           { backgroundColor:C.card, borderWidth:1, borderColor:C.border,

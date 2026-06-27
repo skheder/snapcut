@@ -19,6 +19,12 @@ router.post("/", authenticate, async (req, res) => {
   if (!barber) return res.status(404).json({ error: "Barber not found" });
   if (barber.status !== "available") return res.status(409).json({ error: "Barber unavailable" });
 
+  if (barber.women_clients_only) {
+    const { data: customer } = await supabase.from("users").select("gender").eq("id", req.user.id).single();
+    if (customer?.gender !== "female")
+      return res.status(403).json({ error: "This hairdresser accepts female clients only" });
+  }
+
   const { data: sub } = await supabase.from("subscriptions")
     .select("plan").eq("user_id", req.user.id).eq("status", "active").single();
   const isPro   = sub?.plan === "pro" || sub?.plan === "vip";

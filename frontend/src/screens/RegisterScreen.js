@@ -6,7 +6,7 @@ import { C } from "../lib/theme";
 
 export default function RegisterScreen({ navigation }) {
   const { register } = useAuth();
-  const [form, setForm] = useState({ name:"", email:"", password:"", phone:"", role:"customer", provider_type:"", specialty:"", gender:"" });
+  const [form, setForm] = useState({ name:"", email:"", password:"", phone:"", role:"customer", provider_type:"", specialty:"", gender:"", women_clients_only: false });
   const [loading, setLoading] = useState(false);
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
@@ -53,21 +53,31 @@ export default function RegisterScreen({ navigation }) {
       <TextInput style={s.input} placeholder="Phone number" placeholderTextColor={C.muted}
         value={form.phone} onChangeText={v => set("phone", v)} keyboardType="phone-pad" />
 
+      {/* Gender — shown for everyone */}
+      <View style={s.roleRow}>
+        {[["male","♂ Male"],["female","♀ Female"]].map(([val, label]) => (
+          <TouchableOpacity key={val} style={[s.roleBtn, form.gender === val && s.roleBtnActive]}
+            onPress={() => set("gender", val)}>
+            <Text style={[s.roleTxt, form.gender === val && s.roleTxtActive]}>{label}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+
       {form.role === "barber" && (
         <>
           <TextInput style={s.input} placeholder="Specialty (e.g. Fades & Tapers)"
             placeholderTextColor={C.muted} value={form.specialty}
             onChangeText={v => set("specialty", v)} />
-          <TouchableOpacity style={[s.femaleToggle, form.gender === "female" && s.femaleToggleOn]}
-            onPress={() => set("gender", form.gender === "female" ? "" : "female")}>
-            <Text style={s.femaleToggleIcon}>{form.gender === "female" ? "✓" : "+"}</Text>
-            <View>
-              <Text style={[s.femaleToggleTxt, form.gender === "female" && {color:C.text}]}>
-                {form.provider_type === "hairdresser" ? "I am a female hairdresser" : "I am a female barber"}
-              </Text>
-              <Text style={s.femaleToggleSub}>Customers can filter for female-only service</Text>
-            </View>
-          </TouchableOpacity>
+          {form.gender === "female" && (
+            <TouchableOpacity style={[s.femaleToggle, s.femaleToggleOn]}
+              onPress={() => set("women_clients_only", !form.women_clients_only)}>
+              <Text style={s.femaleToggleIcon}>{form.women_clients_only ? "✓" : "+"}</Text>
+              <View>
+                <Text style={[s.femaleToggleTxt, {color:C.text}]}>Women clients only</Text>
+                <Text style={s.femaleToggleSub}>Only accept female customers</Text>
+              </View>
+            </TouchableOpacity>
+          )}
         </>
       )}
 

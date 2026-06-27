@@ -22,7 +22,7 @@ router.post("/register",
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
 
-    const { email, password, name, role, specialty, phone, gender, provider_type } = req.body;
+    const { email, password, name, role, specialty, phone, gender, provider_type, women_clients_only } = req.body;
 
     const { data: existing } = await supabase
       .from("users").select("id").eq("email", email).single();
@@ -30,7 +30,7 @@ router.post("/register",
 
     const password_hash = await bcrypt.hash(password, 12);
     const { data: user, error } = await supabase
-      .from("users").insert({ email, password_hash, name, role, phone }).select().single();
+      .from("users").insert({ email, password_hash, name, role, phone, gender }).select().single();
     if (error) return res.status(500).json({ error: error.message });
 
     if (role === "barber") {
@@ -42,6 +42,7 @@ router.post("/register",
         provider_type: provider_type || "barber",
         is_female: isFemale,
         accepts_women: isFemale || isHairdresser,
+        women_clients_only: isFemale && !!women_clients_only,
       });
     }
 

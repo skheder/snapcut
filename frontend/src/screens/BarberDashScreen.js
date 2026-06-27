@@ -26,8 +26,9 @@ export default function BarberDashScreen() {
   const [loading,    setLoading]    = useState(true);
   const [refreshing, setRefreshing] = useState(false);
   const [tab,          setTab]          = useState("jobs"); // jobs | earnings
-  const [acceptsWomen, setAcceptsWomen] = useState(false);
-  const [isFemale,     setIsFemale]     = useState(false);
+  const [acceptsWomen,      setAcceptsWomen]      = useState(false);
+  const [isFemale,          setIsFemale]          = useState(false);
+  const [womenClientsOnly,  setWomenClientsOnly]  = useState(false);
 
   const load = useCallback(async () => {
     try {
@@ -40,6 +41,7 @@ export default function BarberDashScreen() {
       setOnline(profile.status === "available");
       setAcceptsWomen(!!profile.accepts_women);
       setIsFemale(!!profile.is_female);
+      setWomenClientsOnly(!!profile.women_clients_only);
     } catch {}
     setLoading(false);
     setRefreshing(false);
@@ -95,6 +97,14 @@ export default function BarberDashScreen() {
     try {
       await updateBarberProfile({ is_female: newVal });
       setIsFemale(newVal);
+    } catch { Alert.alert("Could not update profile"); }
+  }
+
+  async function toggleWomenClientsOnly() {
+    const newVal = !womenClientsOnly;
+    try {
+      await updateBarberProfile({ women_clients_only: newVal });
+      setWomenClientsOnly(newVal);
     } catch { Alert.alert("Could not update profile"); }
   }
 
@@ -229,6 +239,21 @@ export default function BarberDashScreen() {
               <View style={[s.toggleThumb, isFemale && s.toggleThumbOn]} />
             </View>
           </TouchableOpacity>
+
+          {/* Women clients only toggle — only show for female barbers */}
+          {isFemale && (
+            <TouchableOpacity style={s.womensToggle} onPress={toggleWomenClientsOnly}>
+              <View style={{flex:1}}>
+                <Text style={{color:C.text,fontWeight:"700",fontSize:14}}>Women clients only</Text>
+                <Text style={{color:C.muted,fontSize:12,marginTop:3}}>
+                  Only accept female customers — male bookings will be declined
+                </Text>
+              </View>
+              <View style={[s.togglePill, womenClientsOnly && s.togglePillFemale]}>
+                <View style={[s.toggleThumb, womenClientsOnly && s.toggleThumbOn]} />
+              </View>
+            </TouchableOpacity>
+          )}
         </View>
       )}
     </View>
