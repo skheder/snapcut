@@ -11,7 +11,7 @@ function haversine(lat1, lng1, lat2, lng2) {
 
 // GET /barbers — list available barbers
 router.get("/", async (req, res) => {
-  const { lat, lng, radius_km = 15, accepts_women } = req.query;
+  const { lat, lng, radius_km = 15, accepts_women, is_female } = req.query;
   let query = supabase
     .from("barbers")
     .select("*, users(name, phone)")
@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
     .order("rating", { ascending: false });
 
   if (accepts_women === "true") query = query.eq("accepts_women", true);
+  if (is_female === "true") query = query.eq("is_female", true);
 
   const { data, error } = await query;
 
@@ -68,7 +69,7 @@ router.put("/location", authenticate, requireBarber, async (req, res) => {
 
 // PUT /barbers/profile — update barber profile fields
 router.put("/profile", authenticate, requireBarber, async (req, res) => {
-  const allowed = ["accepts_women", "specialty", "bio"];
+  const allowed = ["accepts_women", "is_female", "specialty", "bio"];
   const updates = {};
   for (const key of allowed) {
     if (req.body[key] !== undefined) updates[key] = req.body[key];

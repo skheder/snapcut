@@ -27,6 +27,7 @@ export default function BarberDashScreen() {
   const [refreshing, setRefreshing] = useState(false);
   const [tab,          setTab]          = useState("jobs"); // jobs | earnings
   const [acceptsWomen, setAcceptsWomen] = useState(false);
+  const [isFemale,     setIsFemale]     = useState(false);
 
   const load = useCallback(async () => {
     try {
@@ -38,6 +39,7 @@ export default function BarberDashScreen() {
       setConnected(cs.connected);
       setOnline(profile.status === "available");
       setAcceptsWomen(!!profile.accepts_women);
+      setIsFemale(!!profile.is_female);
     } catch {}
     setLoading(false);
     setRefreshing(false);
@@ -85,6 +87,14 @@ export default function BarberDashScreen() {
     try {
       await updateBarberProfile({ accepts_women: newVal });
       setAcceptsWomen(newVal);
+    } catch { Alert.alert("Could not update profile"); }
+  }
+
+  async function toggleIsFemale() {
+    const newVal = !isFemale;
+    try {
+      await updateBarberProfile({ is_female: newVal });
+      setIsFemale(newVal);
     } catch { Alert.alert("Could not update profile"); }
   }
 
@@ -205,6 +215,19 @@ export default function BarberDashScreen() {
               <View style={[s.toggleThumb, acceptsWomen && s.toggleThumbOn]} />
             </View>
           </TouchableOpacity>
+
+          {/* Female barber toggle */}
+          <TouchableOpacity style={s.womensToggle} onPress={toggleIsFemale}>
+            <View style={{flex:1}}>
+              <Text style={{color:C.text,fontWeight:"700",fontSize:14}}>👩 I am a female barber</Text>
+              <Text style={{color:C.muted,fontSize:12,marginTop:3}}>
+                Appear in Female barber filter — for customers who prefer female-only service
+              </Text>
+            </View>
+            <View style={[s.togglePill, isFemale && s.togglePillFemale]}>
+              <View style={[s.toggleThumb, isFemale && s.toggleThumbOn]} />
+            </View>
+          </TouchableOpacity>
         </View>
       )}
     </View>
@@ -252,7 +275,8 @@ const s = StyleSheet.create({
                     borderWidth:1,borderColor:C.border,borderRadius:16,padding:16,marginTop:14 },
   togglePill:     { width:44,height:26,borderRadius:13,backgroundColor:"rgba(255,255,255,0.1)",
                     justifyContent:"center",paddingHorizontal:3 },
-  togglePillOn:   { backgroundColor:"#C2185B" },
+  togglePillOn:     { backgroundColor:"#C2185B" },
+  togglePillFemale: { backgroundColor:"#7B1FA2" },
   toggleThumb:    { width:20,height:20,borderRadius:10,backgroundColor:C.muted },
   toggleThumbOn:  { backgroundColor:"#fff",alignSelf:"flex-end" },
 });

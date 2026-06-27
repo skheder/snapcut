@@ -10,6 +10,7 @@ export default function BrowseScreen({ navigation }) {
   const [barbers,      setBarbers]      = useState([]);
   const [filter,       setFilter]       = useState("all");
   const [womensOnly,   setWomensOnly]   = useState(false);
+  const [femaleOnly,   setFemaleOnly]   = useState(false);
   const [loading,      setLoading]      = useState(true);
   const [plan,         setPlan]         = useState("basic");
 
@@ -35,7 +36,8 @@ export default function BrowseScreen({ navigation }) {
 
   const filtered = barbers
     .filter(b => filter === "all" || b.status === filter)
-    .filter(b => !womensOnly || b.accepts_women);
+    .filter(b => !womensOnly || b.accepts_women)
+    .filter(b => !femaleOnly || b.is_female);
 
   function renderBarber({ item: b }) {
     const displayPrice = surgeActive ? (b.base_price * SURGE).toFixed(0) : b.base_price;
@@ -46,6 +48,7 @@ export default function BrowseScreen({ navigation }) {
         <View style={{ flexDirection:"row", gap:6 }}>
           {b.is_featured && <Text style={s.featuredBadge}>⭐ FEATURED</Text>}
           {b.accepts_women && <Text style={s.womensBadge}>♀ WOMEN'S</Text>}
+          {b.is_female && <Text style={s.femaleBadge}>👩 FEMALE</Text>}
         </View>
         <View style={[s.row, { marginTop: (b.is_featured || b.accepts_women) ? 8 : 0 }]}>
           <View style={[s.avatar, { backgroundColor: avatarColor(b.id) }]}>
@@ -104,6 +107,9 @@ export default function BrowseScreen({ navigation }) {
         <TouchableOpacity style={[s.filterBtn, womensOnly && s.filterBtnWomens]} onPress={()=>setWomensOnly(w=>!w)}>
           <Text style={[s.filterTxt, womensOnly && s.filterTxtWomens]}>♀ Women's</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={[s.filterBtn, femaleOnly && s.filterBtnFemale]} onPress={()=>setFemaleOnly(f=>!f)}>
+          <Text style={[s.filterTxt, femaleOnly && s.filterTxtFemale]}>👩 Female</Text>
+        </TouchableOpacity>
       </View>
 
       {loading
@@ -148,7 +154,12 @@ const s = StyleSheet.create({
   filterTxtActive:  { color:C.dark },
   filterBtnWomens:  { backgroundColor:"rgba(255,105,180,0.15)", borderColor:"rgba(255,105,180,0.5)" },
   filterTxtWomens:  { color:"#FF69B4" },
+  filterBtnFemale:  { backgroundColor:"rgba(156,39,176,0.15)", borderColor:"rgba(156,39,176,0.5)" },
+  filterTxtFemale:  { color:"#CE93D8" },
   womensBadge:      { fontSize:10, fontWeight:"800", color:"#fff", backgroundColor:"#C2185B",
+                      alignSelf:"flex-start", paddingHorizontal:10, paddingVertical:3,
+                      borderRadius:6, letterSpacing:1 },
+  femaleBadge:      { fontSize:10, fontWeight:"800", color:"#fff", backgroundColor:"#7B1FA2",
                       alignSelf:"flex-start", paddingHorizontal:10, paddingVertical:3,
                       borderRadius:6, letterSpacing:1 },
   card:           { backgroundColor:C.card, borderWidth:1, borderColor:C.border,
